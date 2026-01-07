@@ -1,430 +1,872 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Commerce Personas</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; padding: 20px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Interview Analysis</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f7fa;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #6b7785;
+        margin-bottom: 28px;
+        font-size: 0.95em;
+      }
 
-    .persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-    .persona-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .persona-header { padding: 20px; color: white; }
-    .persona-1 .persona-header { background: linear-gradient(135deg, #FF6B6B, #C44569); }
-    .persona-2 .persona-header { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
-    .persona-3 .persona-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+      /* Persona cards */
+      .persona-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+      }
+      .persona-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      .persona-header {
+        padding: 20px;
+        color: white;
+      }
+      .persona-1 .persona-header {
+        background: linear-gradient(135deg, #ff6b6b, #c44569);
+      }
+      .persona-2 .persona-header {
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      }
+      .persona-3 .persona-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+      .persona-name {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .persona-tagline {
+        font-size: 0.9em;
+        opacity: 0.9;
+      }
+      .persona-body {
+        padding: 20px;
+      }
+      .section {
+        margin-bottom: 15px;
+      }
+      .section-title {
+        font-weight: bold;
+        color: #34495e;
+        margin-bottom: 8px;
+        font-size: 0.95em;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+      }
+      .section-content {
+        font-size: 0.85em;
+        color: #555;
+        line-height: 1.6;
+      }
+      .quote {
+        background: #f8f9fa;
+        padding: 12px;
+        border-left: 4px solid #3498db;
+        margin: 10px 0;
+        font-style: italic;
+        font-size: 0.8em;
+        color: #666;
+      }
+      .tag {
+        display: inline-block;
+        background: #e8f4f8;
+        color: #2980b9;
+        padding: 3px 10px;
+        border-radius: 15px;
+        font-size: 0.75em;
+        margin: 2px;
+      }
+      .demographic {
+        background: #ffeaa7;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 0.85em;
+      }
 
-    .persona-name { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; }
-    .persona-tagline { font-size: 0.9em; opacity: 0.9; }
-    .persona-body { padding: 20px; }
+      /* Text sections + tables */
+      .text-section {
+        margin-top: 30px;
+      }
+      .text-section h2 {
+        color: #2c3e50;
+        margin: 26px 0 12px;
+      }
+      .text-section h3 {
+        color: #2c3e50;
+        margin: 18px 0 10px;
+      }
+      .text-section p,
+      .text-section li {
+        color: #333;
+        line-height: 1.7;
+      }
+      .text-section .hr {
+        height: 1px;
+        background: #e6e6e6;
+        margin: 22px 0;
+        border: 0;
+      }
 
-    .section { margin-bottom: 15px; }
-    .section-title { font-weight: bold; color: #34495e; margin-bottom: 8px; font-size: 0.95em; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-    .section-content { font-size: 0.85em; color: #555; line-height: 1.6; }
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 12px;
+        margin-bottom: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+      th,
+      td {
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        text-align: left;
+        font-size: 0.92em;
+        vertical-align: top;
+      }
+      th {
+        background: #f1f3f6;
+        color: #2c3e50;
+      }
 
-    .quote { background: #f8f9fa; padding: 12px; border-left: 4px solid #3498db; margin: 10px 0; font-style: italic; font-size: 0.8em; color: #666; }
-    .tag { display: inline-block; background: #e8f4f8; color: #2980b9; padding: 3px 10px; border-radius: 15px; font-size: 0.75em; margin: 2px; }
-    .demographic { background: #ffeaa7; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85em; }
+      ul {
+        padding-left: 18px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
 
-    ul { padding-left: 18px; }
-    li { margin-bottom: 5px; }
+  <body>
+    <div class="container">
+      <h1>E-Commerce Consumer Interview Analysis Report</h1>
+      <div class="subtitle">
+        Qualitative analysis using the online purchasing decision funnel + evidence-based personas
+      </div>
 
-    /* Optional: content sections spacing */
-    .text-section { margin-top: 30px; }
-    .text-section h2 { color: #2c3e50; margin: 26px 0 12px; }
-    .text-section h3 { color: #2c3e50; margin: 18px 0 10px; }
-    .text-section p, .text-section li { color: #333; line-height: 1.7; }
-    .text-section .hr { height: 1px; background: #e6e6e6; margin: 22px 0; border: 0; }
-    .table-wrap { overflow-x: auto; margin-top: 12px; }
-    table { width: 100%; border-collapse: collapse; background: #fff; }
-    th, td { border: 1px solid #e6e6e6; padding: 10px; text-align: left; font-size: 0.92em; }
-    th { background: #f1f3f6; color: #2c3e50; }
-  </style>
-</head>
+      <!-- ===================== -->
+      <!-- Executive Summary -->
+      <!-- ===================== -->
+      <div class="text-section">
+        <h2>Executive Summary</h2>
+        <p>
+          This analysis examines qualitative interview data from consumers (E.K., an unnamed male
+          participant, and Ece) to understand e-commerce behavior through the online purchasing decision
+          funnel framework. The findings reveal distinct consumer personas with varying trust
+          mechanisms, search behaviors, and decision-making patterns.
+        </p>
 
-<body>
-  <div class="container">
-    <h1>📊 Evidence-Based E-Commerce Personas</h1>
+        <div class="hr"></div>
 
-    <div class="persona-grid">
-      <!-- Persona 1 -->
-      <div class="persona-card persona-1">
-        <div class="persona-header">
-          <div class="persona-name">🔍 The Social Validator</div>
-          <div class="persona-tagline">Based on: E.K.</div>
+        <!-- ===================== -->
+        <!-- Part 1: Funnel Stage Analysis -->
+        <!-- ===================== -->
+        <h2>Part 1: Funnel Stage Analysis</h2>
+
+        <h3>Stage 1: Awareness</h3>
+        <p><strong>What triggers the consumer’s need to shop online?</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Consumer</th>
+                <th>Trigger Type</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>E.K.</strong></td>
+                <td>Practical + Situational</td>
+                <td>
+                  <em>"Pandemi ile beraber evden çıkmadığımız o süreçte... online alışverişe daha çok yöneldim"</em>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Male Participant</strong></td>
+                <td>Practical (Price / Time)</td>
+                <td><em>"It saves time... Sometimes it also provides better prices"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Ece</strong></td>
+                <td>Practical + Situational</td>
+                <td>
+                  <em>"I have very limited time... Online shopping creates extra space in my life"</em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="persona-body">
-          <div class="demographic">
-            <strong>Demographics:</strong> Gen Z (21-23), University student, Advertising intern, Heavy social media user, Shops 2x/week minimum
-          </div>
 
-          <div class="section">
-            <div class="section-title">💡 Motivations</div>
-            <div class="section-content">
-              <ul>
-                <li>Convenience of shopping from bed</li>
-                <li>Finding best deals through comparison</li>
-                <li>Staying updated with trends</li>
-              </ul>
+        <p>
+          <strong>Key Finding:</strong> Triggers are predominantly <strong>practical</strong> (convenience,
+          price comparison, time-saving) rather than emotional. The pandemic served as a
+          <strong>situational catalyst</strong> that permanently shifted behaviors.
+        </p>
+
+        <h3>Stage 2: Search</h3>
+        <p><strong>Where do consumers actually search first?</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Consumer</th>
+                <th>Primary Search Channel</th>
+                <th>Secondary Channels</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>E.K.</strong></td>
+                <td>Trendyol</td>
+                <td>TikTok / Instagram, Amazon (tech)</td>
+                <td>
+                  <em>"Alışveriş yapacaksam genellikle ilk önce Trendyol'a bakıyorum..."</em>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Male Participant</strong></td>
+                <td>YouTube (expert reviews)</td>
+                <td>Marketplaces, price comparison sites</td>
+                <td><em>"If it's something long-lasting, I always watch YouTube review videos first"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Ece</strong></td>
+                <td>Trendyol / Amazon</td>
+                <td>Zara / Mango apps, Facebook groups</td>
+                <td><em>"I mostly use Trendyol and Amazon..."</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          <strong>Key Finding:</strong> Google is notably <strong>absent</strong> as a primary search tool.
+          Consumers go directly to <strong>marketplaces</strong> or <strong>social platforms</strong>.
+        </p>
+
+        <h3>Stage 3: Evaluation of Alternatives</h3>
+        <p><strong>What signals create trust?</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Trust Signal</th>
+                <th>E.K.</th>
+                <th>Male</th>
+                <th>Ece</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>User Reviews</td>
+                <td>✓✓✓</td>
+                <td>✓✓</td>
+                <td>✓✓✓</td>
+                <td>
+                  E.K.: <em>"Kullanıcı yorumlarına çok dikkat ediyorum... hepsini tek tek okuyorum"</em>
+                </td>
+              </tr>
+              <tr>
+                <td>Authorized Seller Badge</td>
+                <td>✓✓✓</td>
+                <td>✓</td>
+                <td>✓✓</td>
+                <td>
+                  E.K.: <em>"Öncelikle yetkili bir satıcı olup olmadığını inceliyorum"</em>
+                </td>
+              </tr>
+              <tr>
+                <td>Expert / Influencer Opinion</td>
+                <td>✓✓</td>
+                <td>✓✓✓</td>
+                <td>✓✓</td>
+                <td>
+                  Male: <em>"I listen to people who are specialized in that area"</em>
+                </td>
+              </tr>
+              <tr>
+                <td>Platform Reputation</td>
+                <td>✓✓</td>
+                <td>✓✓✓</td>
+                <td>✓✓✓</td>
+                <td>
+                  Ece: <em>"I prefer widely used platforms like Amazon and Trendyol"</em>
+                </td>
+              </tr>
+              <tr>
+                <td>Visual Evidence (Photos)</td>
+                <td>✓✓</td>
+                <td>✓✓</td>
+                <td>✓✓</td>
+                <td>Male: <em>"I looked at photos and reviews"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>What creates hesitation, doubt, or fear?</strong></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fear Factor</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unknown / Unfamiliar Sites</td>
+                <td>Male: <em>"Because I had never heard of them before. The homepage and interface often give it away"</em></td>
+              </tr>
+              <tr>
+                <td>Low Brand Reputation</td>
+                <td>E.K.: <em>"Eğer bir markanın itibarı düşükse alışveriş yapmaktan kaçınıyorum"</em></td>
+              </tr>
+              <tr>
+                <td>Data Privacy Concerns</td>
+                <td>Ece: <em>"I don't feel like my personal data is fully safe in this country, and sometimes this scares me"</em></td>
+              </tr>
+              <tr>
+                <td>No Intermediary Protection</td>
+                <td>Male: <em>"Because there's no regulatory authority between the buyer and the seller"</em></td>
+              </tr>
+              <tr>
+                <td>Suspiciously Low Prices</td>
+                <td>Male: <em>"If it's unusually cheap and unfamiliar, I usually avoid it"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Stage 4: Purchase Decision</h3>
+        <p><strong>What is the final factor that pushes the consumer to buy?</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Consumer</th>
+                <th>Final Push Factor</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>E.K.</strong></td>
+                <td>Price comparison + Convenience</td>
+                <td><em>"Mağazaya göre hangi ürün online'da daha indirimdeyse onu online'dan almaya daha çok dikkat ediyorum"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Male Participant</strong></td>
+                <td>Expert validation + Price</td>
+                <td><em>"After watching expert reviews on YouTube, I also asked AI which model would be more durable"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Ece</strong></td>
+                <td>Social proof + Trending status</td>
+                <td><em>"It was already a trending product... ranked among the best sellers"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>What causes cart abandonment?</strong></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Abandonment Cause</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unreliable site appearance</td>
+                <td>Male: <em>"The homepage and interface often give it away"</em></td>
+              </tr>
+              <tr>
+                <td>Lack of return policy clarity</td>
+                <td>Male: <em>"If I don't like a product and want to return it, there shouldn't be penalties"</em></td>
+              </tr>
+              <tr>
+                <td>Better in-store price</td>
+                <td>E.K.: <em>"Biraz bütçe hesabı yapmak gibi düşünülebilir"</em></td>
+              </tr>
+              <tr>
+                <td>Need to physically try product</td>
+                <td>Male: <em>"I prefer physically trying on clothing"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Stage 5: Post-Purchase Experience</h3>
+        <p><strong>What defines satisfaction or dissatisfaction?</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th>Satisfaction</th>
+                <th>Dissatisfaction</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Delivery</td>
+                <td>Fast, reliable</td>
+                <td>Delayed, damaged</td>
+                <td>Ece: <em>"The most important things for me are timely delivery"</em></td>
+              </tr>
+              <tr>
+                <td>Return Process</td>
+                <td>Smooth, no penalties</td>
+                <td>Complicated, costly</td>
+                <td>Male: <em>"I had difficulties returning items"</em></td>
+              </tr>
+              <tr>
+                <td>Customer Service</td>
+                <td>Quick, polite responses</td>
+                <td>Unresponsive sellers</td>
+                <td>Ece: <em>"Brands that give clear and helpful answers gain my loyalty"</em></td>
+              </tr>
+              <tr>
+                <td>Product Match</td>
+                <td>Matches description/photos</td>
+                <td>Different from expected</td>
+                <td>E.K.: <em>"Mağaza alışverişi... daha güvenli hissettiriyor"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>What influences repeat purchase or loyalty?</strong></p>
+        <blockquote class="quote">
+          "How quickly they solve problems also directly affects my brand loyalty."
+        </blockquote>
+        <blockquote class="quote">
+          "Güvendiğim birkaç influencer var ve mutlaka bir şeyler almadan önce onlar bu ürün hakkında ne düşünüyor diye bakıyorum"
+        </blockquote>
+
+        <div class="hr"></div>
+
+        <!-- ===================== -->
+        <!-- Part 2: Personas -->
+        <!-- ===================== -->
+        <h2>Part 2: E-Commerce Personas</h2>
+        <p>
+          Based on the interview evidence, three distinct consumer personas were synthesized to represent different
+          patterns of e-commerce behavior.
+        </p>
+      </div>
+
+      <!-- Persona Cards -->
+      <div class="persona-grid">
+        <!-- Persona 1 -->
+        <div class="persona-card persona-1">
+          <div class="persona-header">
+            <div class="persona-name">🔍 The Social Validator</div>
+            <div class="persona-tagline">Based on: E.K.</div>
+          </div>
+          <div class="persona-body">
+            <div class="demographic">
+              <strong>Demographics:</strong> Gen Z (21-23), University student, Advertising intern, Heavy social media
+              user, Shops 2x/week minimum
+            </div>
+
+            <div class="section">
+              <div class="section-title">💡 Motivations</div>
+              <div class="section-content">
+                <ul>
+                  <li>Convenience of shopping from bed</li>
+                  <li>Finding best deals through comparison</li>
+                  <li>Staying updated with trends</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">✅ Trust Drivers</div>
+              <div class="section-content">
+                <span class="tag">Influencer validation</span>
+                <span class="tag">User reviews</span>
+                <span class="tag">Authorized seller badge</span>
+                <span class="tag">Organic TikTok content</span>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚠️ Friction Points</div>
+              <div class="section-content">
+                <ul>
+                  <li>Low brand reputation</li>
+                  <li>Cannot try products physically</li>
+                  <li>Data privacy concerns (acknowledged but tolerated)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚡ Decision Shortcuts</div>
+              <div class="section-content">
+                <ul>
+                  <li>Check trusted influencers first</li>
+                  <li>Read ALL user reviews</li>
+                  <li>Compare online vs. store prices</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">📱 Preferred Channels</div>
+              <div class="section-content">
+                <span class="tag">Trendyol</span>
+                <span class="tag">TikTok</span>
+                <span class="tag">Instagram</span>
+                <span class="tag">Amazon (tech)</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              "Güvendiğim birkaç influencer var ve mutlaka bir şeyler almadan önce onlar bu ürün hakkında ne düşünüyor
+              diye bakıyorum"
             </div>
           </div>
+        </div>
 
-          <div class="section">
-            <div class="section-title">✅ Trust Drivers</div>
-            <div class="section-content">
-              <span class="tag">Influencer validation</span>
-              <span class="tag">User reviews</span>
-              <span class="tag">Authorized seller badge</span>
-              <span class="tag">Organic TikTok content</span>
+        <!-- Persona 2 -->
+        <div class="persona-card persona-2">
+          <div class="persona-header">
+            <div class="persona-name">🔬 The Cautious Researcher</div>
+            <div class="persona-tagline">Based on: Male Participant</div>
+          </div>
+          <div class="persona-body">
+            <div class="demographic">
+              <strong>Demographics:</strong> Young adult, Tech-focused purchases, Shops once every 5-6 months, Istanbul
+              resident, Prefers physical verification
+            </div>
+
+            <div class="section">
+              <div class="section-title">💡 Motivations</div>
+              <div class="section-content">
+                <ul>
+                  <li>Getting best value for money</li>
+                  <li>Making informed, durable purchases</li>
+                  <li>Time efficiency when necessary</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">✅ Trust Drivers</div>
+              <div class="section-content">
+                <span class="tag">Expert YouTube reviews</span>
+                <span class="tag">Platform reputation</span>
+                <span class="tag">Clear return policies</span>
+                <span class="tag">Two-factor authentication</span>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚠️ Friction Points</div>
+              <div class="section-content">
+                <ul>
+                  <li>Unknown/unfamiliar websites</li>
+                  <li>No intermediary protection</li>
+                  <li>Suspiciously low prices</li>
+                  <li>Poor site interface design</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚡ Decision Shortcuts</div>
+              <div class="section-content">
+                <ul>
+                  <li>Watch expert reviews on YouTube</li>
+                  <li>Consult AI for product comparison</li>
+                  <li>See product in-store, buy online if cheaper</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">📱 Preferred Channels</div>
+              <div class="section-content">
+                <span class="tag">YouTube</span>
+                <span class="tag">Trendyol</span>
+                <span class="tag">Hepsiburada</span>
+                <span class="tag">Physical stores</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              "If it's something long-lasting, I always watch YouTube review videos first. I check what experts
+              recommend."
             </div>
           </div>
+        </div>
 
-          <div class="section">
-            <div class="section-title">⚠️ Friction Points</div>
-            <div class="section-content">
-              <ul>
-                <li>Low brand reputation</li>
-                <li>Cannot try products physically</li>
-                <li>Data privacy concerns (acknowledged but tolerated)</li>
-              </ul>
-            </div>
+        <!-- Persona 3 -->
+        <div class="persona-card persona-3">
+          <div class="persona-header">
+            <div class="persona-name">⏰ The Efficient Optimizer</div>
+            <div class="persona-tagline">Based on: Ece</div>
           </div>
-
-          <div class="section">
-            <div class="section-title">⚡ Decision Shortcuts</div>
-            <div class="section-content">
-              <ul>
-                <li>Check trusted influencers first</li>
-                <li>Read ALL user reviews</li>
-                <li>Compare online vs. store prices</li>
-              </ul>
+          <div class="persona-body">
+            <div class="demographic">
+              <strong>Demographics:</strong> Working mother, Lives in Rize (limited store access), Premium membership
+              holder, 2+ orders/week, Wears headscarf (niche clothing needs)
             </div>
-          </div>
 
-          <div class="section">
-            <div class="section-title">📱 Preferred Channels</div>
-            <div class="section-content">
-              <span class="tag">Trendyol</span>
-              <span class="tag">TikTok</span>
-              <span class="tag">Instagram</span>
-              <span class="tag">Amazon (tech)</span>
+            <div class="section">
+              <div class="section-title">💡 Motivations</div>
+              <div class="section-content">
+                <ul>
+                  <li>Time optimization (work + family balance)</li>
+                  <li>Access to products unavailable locally</li>
+                  <li>Finding niche/modest fashion</li>
+                  <li>Bulk buying for savings</li>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <div class="quote">
-            "Güvendiğim birkaç influencer var ve mutlaka bir şeyler almadan önce onlar bu ürün hakkında ne düşünüyor diye bakıyorum"
+            <div class="section">
+              <div class="section-title">✅ Trust Drivers</div>
+              <div class="section-content">
+                <span class="tag">iyzico/PayPal</span>
+                <span class="tag">Trending/bestseller status</span>
+                <span class="tag">Facebook group recommendations</span>
+                <span class="tag">Fast problem resolution</span>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚠️ Friction Points</div>
+              <div class="section-content">
+                <ul>
+                  <li>Data privacy concerns in Turkey</li>
+                  <li>Platforms without payment intermediaries</li>
+                  <li>Slow customer service responses</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">⚡ Decision Shortcuts</div>
+              <div class="section-content">
+                <ul>
+                  <li>Check bestseller rankings</li>
+                  <li>Ask in trusted Facebook groups</li>
+                  <li>Stick to known brand apps</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">📱 Preferred Channels</div>
+              <div class="section-content">
+                <span class="tag">Trendyol</span>
+                <span class="tag">Amazon</span>
+                <span class="tag">Zara/Mango apps</span>
+                <span class="tag">Niche modest fashion sites</span>
+              </div>
+            </div>
+
+            <div class="quote">
+              "I have very limited time... Online shopping creates extra space in my life, you get fast delivery, and I
+              can make a purchase even during a 30-minute break."
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Persona 2 -->
-      <div class="persona-card persona-2">
-        <div class="persona-header">
-          <div class="persona-name">🔬 The Cautious Researcher</div>
-          <div class="persona-tagline">Based on: Male Participant</div>
+      <!-- ===================== -->
+      <!-- Persona Comparison + Final Analysis + Conclusion -->
+      <!-- ===================== -->
+      <div class="text-section">
+        <div class="hr"></div>
+
+        <h2>Persona Comparison Matrix</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Social Validator (E.K.)</th>
+                <th>Cautious Researcher (Male)</th>
+                <th>Efficient Optimizer (Ece)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Shopping Frequency</strong></td>
+                <td>2x/week</td>
+                <td>Once per 5-6 months</td>
+                <td>2+ orders/week</td>
+              </tr>
+              <tr>
+                <td><strong>Primary Trust Source</strong></td>
+                <td>Influencers + Reviews</td>
+                <td>Expert opinions + AI</td>
+                <td>Community + Rankings</td>
+              </tr>
+              <tr>
+                <td><strong>Risk Tolerance</strong></td>
+                <td>Medium (tolerates data concerns)</td>
+                <td>Low (avoids unknown sites)</td>
+                <td>Medium (uses payment protection)</td>
+              </tr>
+              <tr>
+                <td><strong>Price Sensitivity</strong></td>
+                <td>High (compares constantly)</td>
+                <td>High (value-focused)</td>
+                <td>Medium (convenience &gt; price)</td>
+              </tr>
+              <tr>
+                <td><strong>Channel Loyalty</strong></td>
+                <td>Low (platform-agnostic)</td>
+                <td>High (sticks to known sites)</td>
+                <td>Medium (niche + mainstream)</td>
+              </tr>
+              <tr>
+                <td><strong>Decision Speed</strong></td>
+                <td>Fast (trusts social proof)</td>
+                <td>Slow (extensive research)</td>
+                <td>Fast (time-constrained)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="persona-body">
-          <div class="demographic">
-            <strong>Demographics:</strong> Young adult, Tech-focused purchases, Shops once every 5-6 months, Istanbul resident, Prefers physical verification
-          </div>
 
-          <div class="section">
-            <div class="section-title">💡 Motivations</div>
-            <div class="section-content">
-              <ul>
-                <li>Getting best value for money</li>
-                <li>Making informed, durable purchases</li>
-                <li>Time efficiency when necessary</li>
-              </ul>
-            </div>
-          </div>
+        <div class="hr"></div>
 
-          <div class="section">
-            <div class="section-title">✅ Trust Drivers</div>
-            <div class="section-content">
-              <span class="tag">Expert YouTube reviews</span>
-              <span class="tag">Platform reputation</span>
-              <span class="tag">Clear return policies</span>
-              <span class="tag">Two-factor authentication</span>
-            </div>
-          </div>
+        <h2>Final Analysis: Where Do Personas and E-Commerce Theory Clash?</h2>
 
-          <div class="section">
-            <div class="section-title">⚠️ Friction Points</div>
-            <div class="section-content">
-              <ul>
-                <li>Unknown/unfamiliar websites</li>
-                <li>No intermediary protection</li>
-                <li>Suspiciously low prices</li>
-                <li>Poor site interface design</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">⚡ Decision Shortcuts</div>
-            <div class="section-content">
-              <ul>
-                <li>Watch expert reviews on YouTube</li>
-                <li>Consult AI for product comparison</li>
-                <li>See product in-store, buy online if cheaper</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">📱 Preferred Channels</div>
-            <div class="section-content">
-              <span class="tag">YouTube</span>
-              <span class="tag">Trendyol</span>
-              <span class="tag">Hepsiburada</span>
-              <span class="tag">Physical stores</span>
-            </div>
-          </div>
-
-          <div class="quote">
-            "If it's something long-lasting, I always watch YouTube review videos first. I check what experts recommend."
-          </div>
+        <h3>Key Friction Points Between Consumer Behavior and Funnel Theory</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Funnel Stage</th>
+                <th>Theoretical Assumption</th>
+                <th>Actual Consumer Behavior</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Awareness</strong></td>
+                <td>Consumers are triggered by marketing/advertising</td>
+                <td>Triggers are <strong>practical</strong> (time, price) not promotional</td>
+                <td><em>"It saves time... Sometimes it also provides better prices"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Search</strong></td>
+                <td>Google is the starting point</td>
+                <td>Consumers <strong>bypass Google entirely</strong> → go direct to marketplaces or social media</td>
+                <td>E.K. goes to Trendyol first; Male goes to YouTube; Ece uses apps</td>
+              </tr>
+              <tr>
+                <td><strong>Evaluation</strong></td>
+                <td>Brand reputation drives trust</td>
+                <td><strong>User reviews and community validation</strong> outweigh brand names</td>
+                <td>Male: <em>"Reviews from real users matter more than brand names"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Purchase</strong></td>
+                <td>Seamless checkout = conversion</td>
+                <td><strong>Physical verification desire</strong> creates friction even with good UX</td>
+                <td>Male: <em>"I prefer physically trying on clothing"</em></td>
+              </tr>
+              <tr>
+                <td><strong>Post-Purchase</strong></td>
+                <td>Product quality = satisfaction</td>
+                <td><strong>Process quality</strong> (returns, support speed) defines satisfaction</td>
+                <td>Ece: <em>"How quickly they solve problems directly affects my brand loyalty"</em></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
 
-      <!-- Persona 3 -->
-      <div class="persona-card persona-3">
-        <div class="persona-header">
-          <div class="persona-name">⏰ The Efficient Optimizer</div>
-          <div class="persona-tagline">Based on: Ece</div>
+        <h3>Strategic Implications for E-Commerce Operations</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gap</th>
+                <th>Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Trust built socially, not technically</td>
+                <td>Invest in <strong>UGC</strong> and influencer partnerships over security badge displays</td>
+              </tr>
+              <tr>
+                <td>Google bypassed</td>
+                <td>Prioritize <strong>marketplace SEO</strong> and <strong>social commerce</strong> over traditional SEM</td>
+              </tr>
+              <tr>
+                <td>Physical verification desire</td>
+                <td>Implement <strong>AR try-on</strong>, detailed videos, and <strong>generous return policies</strong></td>
+              </tr>
+              <tr>
+                <td>Process &gt; Product for loyalty</td>
+                <td>Focus on <strong>post-purchase experience</strong> metrics (return ease, response time)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="persona-body">
-          <div class="demographic">
-            <strong>Demographics:</strong> Working mother, Lives in Rize (limited store access), Premium membership holder, 2+ orders/week, Wears headscarf (niche clothing needs)
-          </div>
 
-          <div class="section">
-            <div class="section-title">💡 Motivations</div>
-            <div class="section-content">
-              <ul>
-                <li>Time optimization (work + family balance)</li>
-                <li>Access to products unavailable locally</li>
-                <li>Finding niche/modest fashion</li>
-                <li>Bulk buying for savings</li>
-              </ul>
-            </div>
-          </div>
+        <div class="hr"></div>
 
-          <div class="section">
-            <div class="section-title">✅ Trust Drivers</div>
-            <div class="section-content">
-              <span class="tag">iyzico/PayPal</span>
-              <span class="tag">Trending/bestseller status</span>
-              <span class="tag">Facebook group recommendations</span>
-              <span class="tag">Fast problem resolution</span>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">⚠️ Friction Points</div>
-            <div class="section-content">
-              <ul>
-                <li>Data privacy concerns in Turkey</li>
-                <li>Platforms without payment intermediaries</li>
-                <li>Slow customer service responses</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">⚡ Decision Shortcuts</div>
-            <div class="section-content">
-              <ul>
-                <li>Check bestseller rankings</li>
-                <li>Ask in trusted Facebook groups</li>
-                <li>Stick to known brand apps</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="section-title">📱 Preferred Channels</div>
-            <div class="section-content">
-              <span class="tag">Trendyol</span>
-              <span class="tag">Amazon</span>
-              <span class="tag">Zara/Mango apps</span>
-              <span class="tag">Niche modest fashion sites</span>
-            </div>
-          </div>
-
-          <div class="quote">
-            "I have very limited time... Online shopping creates extra space in my life, you get fast delivery, and I can make a purchase even during a 30-minute break."
-          </div>
-        </div>
+        <h2>Conclusion</h2>
+        <p>
+          Contemporary Turkish e-commerce consumers—particularly Gen Z and time-constrained professionals—operate within a
+          <strong>socially-mediated trust ecosystem</strong> that diverges from traditional funnel assumptions. The interviews
+          indicate that community validation replaces brand authority, platform ecosystems displace search engines, and
+          post-purchase experience quality drives loyalty more than product satisfaction alone. Security awareness exists without
+          behavioral change, as consumers acknowledge risks but continue shopping.
+        </p>
       </div>
     </div>
-
-    <div class="text-section">
-      <div class="hr"></div>
-
-      <h2>Persona Comparison Matrix</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Dimension</th>
-              <th>Social Validator (E.K.)</th>
-              <th>Cautious Researcher (Male)</th>
-              <th>Efficient Optimizer (Ece)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Shopping Frequency</strong></td>
-              <td>2x/week</td>
-              <td>Once per 5-6 months</td>
-              <td>2+ orders/week</td>
-            </tr>
-            <tr>
-              <td><strong>Primary Trust Source</strong></td>
-              <td>Influencers + Reviews</td>
-              <td>Expert opinions + AI</td>
-              <td>Community + Rankings</td>
-            </tr>
-            <tr>
-              <td><strong>Risk Tolerance</strong></td>
-              <td>Medium (tolerates data concerns)</td>
-              <td>Low (avoids unknown sites)</td>
-              <td>Medium (uses payment protection)</td>
-            </tr>
-            <tr>
-              <td><strong>Price Sensitivity</strong></td>
-              <td>High (compares constantly)</td>
-              <td>High (value-focused)</td>
-              <td>Medium (convenience &gt; price)</td>
-            </tr>
-            <tr>
-              <td><strong>Channel Loyalty</strong></td>
-              <td>Low (platform-agnostic)</td>
-              <td>High (sticks to known sites)</td>
-              <td>Medium (niche + mainstream)</td>
-            </tr>
-            <tr>
-              <td><strong>Decision Speed</strong></td>
-              <td>Fast (trusts social proof)</td>
-              <td>Slow (extensive research)</td>
-              <td>Fast (time-constrained)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="hr"></div>
-
-      <h2>Final Analysis: Where Do Personas and E-Commerce Theory Clash?</h2>
-
-      <h3>Key Friction Points Between Consumer Behavior and Funnel Theory</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Funnel Stage</th>
-              <th>Theoretical Assumption</th>
-              <th>Actual Consumer Behavior</th>
-              <th>Evidence</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Awareness</strong></td>
-              <td>Consumers are triggered by marketing/advertising</td>
-              <td>Triggers are <strong>practical</strong> (time, price) not promotional</td>
-              <td><em>"It saves time... Sometimes it also provides better prices"</em></td>
-            </tr>
-            <tr>
-              <td><strong>Search</strong></td>
-              <td>Google is the starting point</td>
-              <td>Consumers <strong>bypass Google entirely</strong> → go direct to marketplaces or social media</td>
-              <td>E.K. goes to Trendyol first; Male goes to YouTube; Ece uses apps</td>
-            </tr>
-            <tr>
-              <td><strong>Evaluation</strong></td>
-              <td>Brand reputation drives trust</td>
-              <td><strong>User reviews and community validation</strong> outweigh brand names</td>
-              <td>Male: <em>"Reviews from real users matter more than brand names"</em></td>
-            </tr>
-            <tr>
-              <td><strong>Purchase</strong></td>
-              <td>Seamless checkout = conversion</td>
-              <td><strong>Physical verification desire</strong> creates friction even with good UX</td>
-              <td>Male: <em>"I prefer physically trying on clothing"</em></td>
-            </tr>
-            <tr>
-              <td><strong>Post-Purchase</strong></td>
-              <td>Product quality = satisfaction</td>
-              <td><strong>Process quality</strong> (returns, support speed) defines satisfaction</td>
-              <td>Ece: <em>"How quickly they solve problems directly affects my brand loyalty"</em></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Critical Clashes Identified</h3>
-      <ul>
-        <li><strong>The "Trust Paradox"</strong> — Security badges and policies are assumed to build trust, but consumers rely on social proof over technical measures. E.K. admits she never reads privacy policies.</li>
-        <li><strong>The "Search Bypass"</strong> — Funnel theory assumes SEO/SEM capture awareness, yet all personas start from marketplaces or social platforms.</li>
-        <li><strong>The "Convenience-Control Tension"</strong> — Online shopping is convenient, but even frequent shoppers still want to touch and try products physically.</li>
-        <li><strong>The "Data Awareness Gap"</strong> — Consumers acknowledge data risks but continue shopping due to resignation and normalization.</li>
-      </ul>
-
-      <h3>Strategic Implications for E-Commerce Operations</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Gap</th>
-              <th>Recommended Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Trust built socially, not technically</td>
-              <td>Invest in <strong>UGC</strong> (user-generated content) and influencer partnerships over security badge displays</td>
-            </tr>
-            <tr>
-              <td>Google bypassed</td>
-              <td>Prioritize <strong>marketplace SEO</strong> and <strong>social commerce</strong> over traditional SEM</td>
-            </tr>
-            <tr>
-              <td>Physical verification desire</td>
-              <td>Implement <strong>AR try-on</strong> features, detailed videos, and <strong>generous return policies</strong></td>
-            </tr>
-            <tr>
-              <td>Process &gt; Product for loyalty</td>
-              <td>Focus on <strong>post-purchase experience</strong> metrics (return ease, response time)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="hr"></div>
-
-      <h2>Conclusion</h2>
-      <p>
-        This analysis reveals that contemporary Turkish e-commerce consumers—particularly Gen Z and time-constrained professionals—operate within a
-        <strong>socially-mediated trust ecosystem</strong> that diverges significantly from traditional funnel assumptions.
-        The interviews demonstrate that:
-      </p>
-      <ul>
-        <li><strong>Community validation</strong> has replaced brand authority as the primary trust mechanism.</li>
-        <li><strong>Platform ecosystems</strong> (Trendyol, Amazon) have displaced search engines as discovery tools.</li>
-        <li><strong>Post-purchase experience quality</strong> determines loyalty more than product satisfaction alone.</li>
-        <li><strong>Security awareness exists without behavioral change</strong> — consumers acknowledge risks but continue shopping.</li>
-      </ul>
-      <p>
-        E-commerce strategies must evolve from <strong>transaction-focused funnels</strong> to <strong>relationship-focused ecosystems</strong>
-        that prioritize social proof, seamless returns, and community engagement over traditional marketing and technical security displays.
-      </p>
-    </div>
-  </div>
-</body>
+  </body>
 </html>
